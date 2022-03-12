@@ -14,12 +14,14 @@
 %% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 
+
+
 \documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 %% AltaCV uses the fontawesome5 and packages.
 %% See http://texdoc.net/pkg/fontawesome5 for full list of symbols.
 
 % Change the page layout if you need to
-\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm,columnsep=1.2cm}
 
 % The paracol package lets you typeset columns of text in parallel
 \usepackage{paracol}
@@ -35,7 +37,7 @@
   % If using pdflatex:
   \usepackage[rm]{roboto}
   \usepackage[defaultsans]{lato}
-  % \usepackage{sourcesanspro}
+  \usepackage{sourcesanspro}
   \renewcommand{\familydefault}{\sfdefault}
 \fi
 
@@ -45,19 +47,22 @@
 \definecolor{DarkPastelRed}{HTML}{450808}
 \definecolor{PastelRed}{HTML}{8F0D0D}
 \definecolor{GoldenEarth}{HTML}{E7D192}
-\colorlet{name}{black}
-\colorlet{tagline}{PastelRed}
-\colorlet{heading}{DarkPastelRed}
-\colorlet{headingrule}{GoldenEarth}
-\colorlet{subheading}{PastelRed}
-\colorlet{accent}{PastelRed}
-\colorlet{emphasis}{SlateGrey}
+\definecolor{Light}{HTML}{93A9B4}
+\definecolor{Medium}{HTML}{607D8B}
+\definecolor{Dark}{HTML}{40535D}
+\colorlet{name}{Dark}
+\colorlet{tagline}{Dark}
+\colorlet{heading}{Dark}
+\colorlet{headingrule}{Light}
+\colorlet{subheading}{Medium}
+\colorlet{accent}{Light}
+\colorlet{emphasis}{Dark}
 \colorlet{body}{LightGrey}
 
 % Change some fonts, if necessary
-\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\namefont}{\Huge\sffamily\bfseries}
 \renewcommand{\personalinfofont}{\footnotesize}
-\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsectionfont}{\LARGE\sffamily\bfseries}
 \renewcommand{\cvsubsectionfont}{\large\bfseries}
 
 
@@ -79,43 +84,98 @@
 %% sample.bib contains your publications
 %\addbibresource{sample.bib}
 
+%TODO: use class variables
+\renewcommand{\makecvheader}{%
+	\begingroup
+	\hfill%
+	\begin{minipage}{\dimexpr\linewidth}%
+		\centering%
+		{\namefont\color{name}Thibo Frans\par}
+		\medskip
+    {\textrm{\taglinefont\color{tagline}Cirriculum Vitae}\par}
+		\bigskip
+    {\personalinfofont {
+        % Not all of these are required!
+        \email{thibo.frans@live.be}
+        \phone{0468 94 08 68}
+        \mailaddress{Tarwestraat 14/001 9000 Gent}
+        \location{Gent, BELGIUM}
+        \homepage{thibofrans.be}
+        %\twitter{@twitterhandle}
+        %\linkedin{your_id}
+        \github{thibofrans}
+        %\orcid{0000-0000-0000-0000}
+        %% You can add your own arbitrary detail with
+        %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+        % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
+        %% Or you can declare your own field with
+        %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+        % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+        % \gitlab{your_id}
+        %%
+        %% For services and platforms like Mastodon where there isn't a
+        %% straightforward relation between the user ID/nickname and the hyperlink,
+        %% you can use \printinfo directly e.g.
+        % \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+        %% But if you absolutely want to create new dedicated info fields for
+        %% such platforms, then use \NewInfoField* with a star:
+        % \NewInfoField*{mastodon}{\faMastodon}
+        %% then you can use \mastodon, with TWO arguments where the 2nd argument is
+        %% the full hyperlink.
+        % \mastodon{@username@instance}{https://instance.url/@username}
+      }\par}
+	\end{minipage}\hfill%
+	\par%
+	\endgroup\medskip
+}
+
+\renewcommand{\cvsection}[2][]{%
+\nointerlineskip\bigskip%  %% bugfix in v1.6.2
+\ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
+{\color{heading}\cvsectionfont#2}\\[-1ex]%
+{\color{headingrule}\rule{\linewidth}{2pt}\par}\medskip
+}
+
+
+\renewcommand{\taglinefont}{\large\itshape}
+
 \begin{document}
-\name{Thibo Frans}
-\tagline{Cirriculum Vitae}
+%\name{Thibo Frans}
+%\tagline{Cirriculum Vitae}
 %% You can add multiple photos on the left or right
 %\photoR{2.8cm}{Globe_High}
 % \photoL{2.5cm}{Yacht_High,Suitcase_High}
 
-\personalinfo{%
-	% Not all of these are required!
-	\email{thibo.frans@live.be}
-	\phone{0468 94 08 68}
-	\mailaddress{Tarwestraat 14/001 9000 Gent}
-	\location{Gent, BELGIUM}
-	\homepage{thibofrans.be}
-	%\twitter{@twitterhandle}
-	%\linkedin{your_id}
-	\github{thibofrans}
-	%\orcid{0000-0000-0000-0000}
-	%% You can add your own arbitrary detail with
-	%% \printinfo{symbol}{detail}[optional hyperlink prefix]
-	% \printinfo{\faPaw}{Hey ho!}[https://example.com/]
-	%% Or you can declare your own field with
-	%% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
-	% \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
-	% \gitlab{your_id}
-	%%
-	%% For services and platforms like Mastodon where there isn't a
-	%% straightforward relation between the user ID/nickname and the hyperlink,
-	%% you can use \printinfo directly e.g.
-	% \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
-	%% But if you absolutely want to create new dedicated info fields for
-	%% such platforms, then use \NewInfoField* with a star:
-	% \NewInfoField*{mastodon}{\faMastodon}
-	%% then you can use \mastodon, with TWO arguments where the 2nd argument is
-	%% the full hyperlink.
-	% \mastodon{@username@instance}{https://instance.url/@username}
-}
+%\personalinfo{%
+% Not all of these are required!
+%\email{thibo.frans@live.be}
+%\phone{0468 94 08 68}
+%\mailaddress{Tarwestraat 14/001 9000 Gent}
+%\location{Gent, BELGIUM}
+%\homepage{thibofrans.be}
+%\twitter{@twitterhandle}
+%\linkedin{your_id}
+%\github{thibofrans}
+%\orcid{0000-0000-0000-0000}
+%% You can add your own arbitrary detail with
+%% \printinfo{symbol}{detail}[optional hyperlink prefix]
+% \printinfo{\faPaw}{Hey ho!}[https://example.com/]
+%% Or you can declare your own field with
+%% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+% \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+% \gitlab{your_id}
+%%
+%% For services and platforms like Mastodon where there isn't a
+%% straightforward relation between the user ID/nickname and the hyperlink,
+%% you can use \printinfo directly e.g.
+% \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+%% But if you absolutely want to create new dedicated info fields for
+%% such platforms, then use \NewInfoField* with a star:
+% \NewInfoField*{mastodon}{\faMastodon}
+%% then you can use \mastodon, with TWO arguments where the 2nd argument is
+%% the full hyperlink.
+% \mastodon{@username@instance}{https://instance.url/@username}
+%}
 
 \makecvheader
 %% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
@@ -152,23 +212,52 @@
 		\item Verantwoordelijk voor the dagelijks vers groenten en fruit.
 	\end{itemize}
 
-	\cvsection{Certificaten}
+	\cvsection{Projecten}
 
-	\cvachievement{\faIcon{database}}{Oracle}{Database Foundations}
+	\cvevent{Polis}{Universiteit Gent}{2021}{Gent}
+	Schoolopdracht: een simulatie van een stad (denk aan SimCity) geschreven in Java en JavaFX.
+
+	%% Switch to the right column. This will now automatically move to the second
+	%% page if the content is too long.
+	\switchcolumn
 
 	\cvsection{Vaardigheden}
 
-	\cvtag{.NET}
+	\cvsubsection{Programmeertalen}
+
+	\cvtag{Java}
+	\cvtag{C\#}
+	\cvtag{Python}
+	\cvtag{JS}
+	\cvtag{Bash}
+
+	\divider
+
+	\cvtag{HTML}
+	\cvtag{CSS}
+	\cvtag{Markdown}
+	\cvtag{\LaTeX} \\
+	\cvtag{AsciiDoc}
+
+	\medskip
+
+	\cvsubsection{Technologie\"en}
+
+	\cvtag{JavaFX}
+	\cvtag{JUnit}
+	\cvtag{JDBC}
+	\cvtag{Git}\\
 	\cvtag{MySQL}
 	\cvtag{PostgreSQL}
 	\cvtag{Linux}
-	\cvtag{\LaTeX}
 
-	\divider\smallskip
+	\medskip
 
+	\cvsubsection{Sterktes}
+
+	\cvtag{Probleemoplossend denken} \\
 	\cvtag{Stipt}
 	\cvtag{Flexibel}
-	\cvtag{Probleemoplossend denken}
 
 	\cvsection{Talen}
 
@@ -178,99 +267,21 @@
 	\cvskill{English}{4.5}
 	\cvskill{Fran\c{c}ais}{2}
 
-	\divider
+	\medskip
 
-	\cvsubsection{Programmeertalen}
-	\cvskill{Java}{4}
-	\cvskill{C\#}{3.5}
-	\cvskill{Python}{3.5}
-	\cvskill{Javascript}{3}
-	\cvskill{C}{2}
+	\cvsection{Certificaten}
 
-	\divider
-
-	\cvsubsection{Opmaaktalen}
-	\cvskill{HTML}{4}
-	\cvskill{CSS}{3}
-	\cvskill{\LaTeX}{4}
-	\cvskill{Markdown}{4}
-
-
-	\cvsection{Projecten}
-
-	\cvevent{Polis}{Universiteit Gent}{2021}{Gent}
-	Schoolopdracht: een simulatie van een stad (denk aan SimCity) geschreven in Java en JavaFX.
+	\cvachievement{\faIcon{database}}{Oracle}{Database Foundations}
 
 	\medskip
 
-	\cvsection{A Day of My Life}
+	%\cvachievement{\faIcon{server}}{CompTIA}{A\textsuperscript{+}}
 
-	% Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
-	% \wheelchart{outer radius}{inner radius}{
-	% comma-separated list of value/text width/color/detail}
-	\wheelchart{1.5cm}{0.5cm}{%
-	6/8em/accent!30/{Sleep,\\beautiful sleep},
-	3/8em/accent!40/Hopeful novelist by night,
-	8/8em/accent!60/Daytime job,
-	2/10em/accent/Sports and relaxation,
-	5/6em/accent!20/Spending time with family
-	}
+
 
 	% use ONLY \newpage if you want to force a page break for
 	% ONLY the current column
-	\newpage
-
-
-	%% Switch to the right column. This will now automatically move to the second
-	%% page if the content is too long.
-	\switchcolumn
-
-	\cvsection{My Life Philosophy}
-
-	\begin{quote}
-		``Something smart or heartfelt, preferably in one sentence.''
-	\end{quote}
-
-	\cvsection{Most Proud of}
-
-	\cvachievement{\faTrophy}{Fantastic Achievement}{and some details about it}
-
-	\divider
-
-	\cvachievement{\faHeartbeat}{Another achievement}{more details about it of course}
-
-	\divider
-
-	\cvachievement{\faHeartbeat}{Another achievement}{more details about it of course}
-
-	\cvsection{Languages}
-
-	\cvskill{English}{5}
-	\divider
-
-	\cvskill{Spanish}{4}
-	\divider
-
-	\cvskill{German}{3.5} %% Supports X.5 values.
-
-	%% Yeah I didn't spend too much time making all the
-	%% spacing consistent... sorry. Use \smallskip, \medskip,
-	%% \bigskip, \vspace etc to make adjustments.
-	\medskip
-
-
-	\cvsection{Referees}
-
-	% \cvref{name}{email}{mailing address}
-	\cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
-	{Address Line 1\\Address line 2}
-
-	\divider
-
-	\cvref{Prof.\ Gamma Delta}{Institute}{g.delta@university.edu}
-	{Address Line 1\\Address line 2}
-
-
+	%\newpage
 \end{paracol}
 
 
