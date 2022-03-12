@@ -21,7 +21,7 @@
 %% See http://texdoc.net/pkg/fontawesome5 for full list of symbols.
 
 % Change the page layout if you need to
-\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm,columnsep=1.2cm}
+\geometry{left=20mm,right=20mm,top=33mm,bottom=20mm,columnsep=1.2cm}
 
 % The paracol package lets you typeset columns of text in parallel
 \usepackage{paracol}
@@ -92,17 +92,16 @@
 		\centering%
 		{\namefont\color{name}Thibo Frans\par}
 		\medskip
-    {\textrm{\taglinefont\color{tagline}Cirriculum Vitae}\par}
+    {\textrm{\taglinefont\color{tagline}Curriculum Vitae}\par}
 		\bigskip
     {\personalinfofont {
         % Not all of these are required!
-        \email{thibo.frans@live.be}
-        \phone{0468 94 08 68}
-        \mailaddress{Tarwestraat 14/001 9000 Gent}
-        \location{Gent, BELGIUM}
+        \printinfo{\faIcon{birthday-cake}}{22 Sept 1998}
+        \phone{+32 468 94 08 68}
+        \printinfo{\faIcon{envelope}}{thibo.frans@live.be}[mailto:thibo.frans@live.be]
+        \printinfo{\faIcon{home}}{Tarwestraat 14/001 9000 Gent}
+        \location{Gent, BELGI\"E}
         \homepage{thibofrans.be}
-        %\twitter{@twitterhandle}
-        %\linkedin{your_id}
         \github{thibofrans}
         %\orcid{0000-0000-0000-0000}
         %% You can add your own arbitrary detail with
@@ -114,8 +113,7 @@
         % \gitlab{your_id}
         %%
         %% For services and platforms like Mastodon where there isn't a
-        %% straightforward relation between the user ID/nickname and the hyperlink,
-        %% you can use \printinfo directly e.g.
+        %% straightforward relation between the user ID/nickname and the hyperlink, %% you can use \printinfo directly e.g.
         % \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
         %% But if you absolutely want to create new dedicated info fields for
         %% such platforms, then use \NewInfoField* with a star:
@@ -181,11 +179,9 @@
 %% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
 % \AtBeginEnvironment{itemize}{\small}
 
-%% Set the left/right column width ratio to 6:4.
+% Set the left/right column width ratio.
 \columnratio{0.6}
 
-% Start a 2-column paracol. Both the left and right columns will automatically
-% break across pages if things get too long.
 \begin{paracol}{2}
 
 	\cvsection{Opleiding}
@@ -202,23 +198,18 @@
 
 	\divider
 
-	\cvevent{ASO Wetenschappen--Wiskunde}{Examencomissie Secundair Onderwijs}{Sept 2016 -- Okt 2018}{}
+	\cvevent{ASO Wetenschappen--Wiskunde}{Examencommissie Secundair Onderwijs}{Aug 2016}{}
 
-	% \divider
 	\cvsection{Ervaring}
 
-	\cvevent{Winkel Medewerker}{Carrefour Market Groenevallei/Mariakerke}{Okt 2018 -- Aug 2020}{Gent}
+	\cvevent{Winkelmedewerker}{Carrefour Market Groene Vallei/Mariakerke}{Okt 2018 -- Aug 2020}{Gent}
 	\begin{itemize}
-		\item Verantwoordelijk voor the dagelijks vers groenten en fruit.
+		\item Assisteerde aan de kassa om klanten effici\"ent en correct hun boodschappen te helpen afrekenen.
+		\item Onderhield de groenteafdeling zodat de schappen altijd mooi gevuld waren en klanten enkel gepresenteerd werden door verse producten van hoge kwaliteit.
+		\item Registreerde en organiseerde het inventaris voor groenten en fruit opdat de bestelling van de volgende dag op tijd doorgegeven kon worden.
 	\end{itemize}
 
-	\cvsection{Projecten}
-
-	\cvevent{Polis}{Universiteit Gent}{2021}{Gent}
-	Schoolopdracht: een simulatie van een stad (denk aan SimCity) geschreven in Java en JavaFX.
-
-	%% Switch to the right column. This will now automatically move to the second
-	%% page if the content is too long.
+	%% Switch to the right column.
 	\switchcolumn
 
 	\cvsection{Vaardigheden}
@@ -261,8 +252,6 @@
 
 	\cvsection{Talen}
 
-	\cvsubsection{Natuurlijke talen}
-
 	\cvskill{Nederlands}{5}
 	\cvskill{English}{4.5}
 	\cvskill{Fran\c{c}ais}{2}
@@ -273,9 +262,15 @@
 
 	\cvachievement{\faIcon{database}}{Oracle}{Database Foundations}
 
+
 	\medskip
 
-	%\cvachievement{\faIcon{server}}{CompTIA}{A\textsuperscript{+}}
+	%\cvachievement{\faIcon{server}}{CompTIA}{A+, Network+, Security+}
+
+	\cvsection{Projecten}
+
+	\cvevent{Polis\hfill\cvtag{\small Java}\cvtag{\small JavaFX}}{Universiteit Gent}{}{}
+	Een klein (\textpm 3000 SLOC) schoolproject waarin we een stedenbouwsimulatiespel hebben geschreven.
 
 
 
